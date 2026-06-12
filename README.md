@@ -54,6 +54,18 @@ graph TB
 | 🌍 **国际化** | 中文/英文切换，语言偏好持久化 |
 | 🎨 **主题** | 亮色/暗色模式，CSS 变量全局切换 |
 
+## 页面预览
+
+> 截图位于 `screenshots/`，均为本地 PWA 实拍。
+
+![番茄钟 — 翻页时钟与模式切换](screenshots/clock-01-timer.png)
+
+![数据统计 — 热力图与工作分布](screenshots/clock-02-stats.png)
+
+![高效时段与成就 — 热力图 + 徽章进度](screenshots/clock-03-achievements.png)
+
+![任务管理 — 重要 × 想做象限与推荐下一步](screenshots/clock-04-tasks.png)
+
 ## 快速开始
 
 ### 本地开发

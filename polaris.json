@@ -1,0 +1,671 @@
+{
+  "name": "PolarClock",
+  "_meta": {
+    "schema_version": "1.0",
+    "last_synced_at": "2026-06-10T00:00:00+08:00"
+  },
+  "description": "番茄钟时间管理系统：番茄钟 + 任务管理 + 统计分析 + 日程习惯 + 成就系统 + 信息消费工作台（Feed）+ 国际象棋休息，React + FastAPI 全栈 PWA 应用",
+  "tier": "app",
+  "status": "active",
+  "version": "1.1.0",
+  "requirements": [
+    {
+      "id": "R9",
+      "need": "用户数据隔离",
+      "approach": "每个用户的数据存储在独立的 data/{username}/ 目录下，API 通过认证 token 解析用户身份后路由到对应目录，Sync API 通过 username 参数返回隔离数据",
+      "features": [
+        {
+          "name": "按用户名隔离数据目录",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "JSON 文件存储"
+          ],
+          "behavior": [
+            "用户数据存储在 data/{username}/ 目录",
+            "自动迁移旧 data/users/{user_id}/ 布局",
+            "DATA_DIR 环境变量覆盖仍然有效"
+          ],
+          "evidence": [
+            "2026-04-28: git 183ed03 用户数据隔离实现，data/{username}/ 目录结构已验证"
+          ],
+          "test_status": "not_tested"
+        },
+        {
+          "name": "API 按用户隔离",
+          "status": "done",
+          "tech": [
+            "FastAPI"
+          ],
+          "behavior": [
+            "所有 API 端点通过 X-Token 认证解析用户",
+            "Sync API 通过 username 参数返回对应用户数据",
+            "不同用户的番茄钟、任务、日程、习惯、成就数据不交叉"
+          ],
+          "evidence": [
+            "2026-04-28: git 183ed03 API 隔离验证，不同 username 数据互不交叉"
+          ],
+          "test_status": "not_tested"
+        }
+      ]
+    },
+    {
+      "id": "R1",
+      "need": "番茄钟计时引擎与多模式计时",
+      "approach": "FastAPI WebSocket 实时同步，前端 Zustand store 管理状态，支持工作/休息/长休息/运动/冥想多种模式，MiniTimer 浮窗全局可见",
+      "features": [
+        {
+          "name": "番茄钟计时",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "WebSocket",
+            "Zustand"
+          ],
+          "behavior": [
+            "45min 工作 + 10min 休息周期",
+            "长休息模式",
+            "WebSocket 实时状态同步"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "运动计时",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "React"
+          ],
+          "behavior": [
+            "拳击/跑步专用计时模式"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "冥想模式",
+          "status": "done",
+          "tech": [
+            "React",
+            "Web Audio API"
+          ],
+          "behavior": [
+            "冥想专用计时 + 环境音集成"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "翻页时钟动画",
+          "status": "done",
+          "tech": [
+            "React",
+            "CSS"
+          ],
+          "behavior": [
+            "FlipClock + FlipDigit 组件翻页动画展示"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "环境音",
+          "status": "done",
+          "tech": [
+            "Web Audio API"
+          ],
+          "behavior": [
+            "5 种白噪音预设（雨声、咖啡馆、海浪、壁炉、微风）",
+            "音量控制"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "自定义铃声",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "React",
+            "Web Audio API"
+          ],
+          "behavior": [
+            "工作/休息/冥想结束铃声各自可设为内置、自定义或静音",
+            "上传自定义铃声（mp3/wav/ogg, ≤1MB），后端校验格式与大小",
+            "删除自定义铃声时自动重置引用该铃声的偏好",
+            "到点播放统一经 preference 解析，Settings 设什么就播什么",
+            "capabilities.json 登记 clock.sounds.* 系列能力供 Agentic 调用"
+          ],
+          "evidence": [
+            "2026-05-01: 统一播放路径 playSceneEndSound + Settings 删除/试听/限制说明 + DELETE API + 测试覆盖"
+          ],
+          "test_status": "not_tested"
+        },
+        {
+          "name": "MiniTimer 浮窗",
+          "status": "done",
+          "tech": [
+            "React"
+          ],
+          "behavior": [
+            "可拖拽浮动迷你计时器",
+            "非计时器页面全局可见",
+            "展开/折叠状态切换"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R2",
+      "need": "任务管理与番茄进度追踪",
+      "approach": "JSON 文件持久化，前端 Zustand store，支持无限嵌套子任务、循环任务、甘特图和优先级排序",
+      "features": [
+        {
+          "name": "任务 CRUD",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "React",
+            "Zustand"
+          ],
+          "behavior": [
+            "无限嵌套子任务",
+            "标签过滤",
+            "番茄进度追踪",
+            "TaskDetail 独立详情页"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "循环任务",
+          "status": "done",
+          "tech": [
+            "FastAPI"
+          ],
+          "behavior": [
+            "日/周/月循环周期"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "甘特图",
+          "status": "done",
+          "tech": [
+            "React"
+          ],
+          "behavior": [
+            "GanttChart 组件可视化任务时间线"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "二象限优先级",
+          "status": "done",
+          "tech": [
+            "React"
+          ],
+          "behavior": [
+            "AxisSelector 组件紧急/重要二象限推荐排序"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R3",
+      "need": "统计分析与数据可视化",
+      "approach": "后端聚合统计数据，前端 GitHub 风格热力图 + 高效时段分析 + 分享卡片导出",
+      "features": [
+        {
+          "name": "统计聚合",
+          "status": "done",
+          "tech": [
+            "FastAPI"
+          ],
+          "behavior": [
+            "今日/周/月统计",
+            "任务完成率"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "热力图",
+          "status": "done",
+          "tech": [
+            "React"
+          ],
+          "behavior": [
+            "GitHub 风格热力图展示番茄完成情况"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "高效时段分析",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "React"
+          ],
+          "behavior": [
+            "分析用户高效工作时段"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "分享卡片",
+          "status": "done",
+          "tech": [
+            "html2canvas"
+          ],
+          "behavior": [
+            "导出统计数据为分享图片"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R4",
+      "need": "日程管理与习惯追踪",
+      "approach": "三餐提醒 + 课程 Block 管理 + WeekSchedule 周视图，习惯自动打卡联动番茄钟/运动/冥想完成事件",
+      "features": [
+        {
+          "name": "日程管理",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "React"
+          ],
+          "behavior": [
+            "三餐提醒（mealStore）",
+            "课程/Block 管理（scheduleStore）",
+            "WeekSchedule 周视图组件"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "习惯追踪",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "React"
+          ],
+          "behavior": [
+            "自定义习惯创建",
+            "番茄钟/运动/冥想完成时自动打卡"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R5",
+      "need": "成就系统与游戏化激励",
+      "approach": "后端 20+ 成就定义跨 6 类别（番茄/专注/连胜/任务/健康/特殊），自动追踪进度，前端 Achievements 组件展示",
+      "features": [
+        {
+          "name": "成就追踪",
+          "status": "done",
+          "tech": [
+            "FastAPI"
+          ],
+          "interfaces": [
+            "GET /api/achievements",
+            "POST /api/achievements/check"
+          ],
+          "behavior": [
+            "20+ 成就：初心番茄、番茄传奇、百日之约、完美一天等",
+            "6 类别：pomodoro/focus/streak/task/health/special",
+            "自动进度追踪与解锁"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "成就展示",
+          "status": "done",
+          "tech": [
+            "React"
+          ],
+          "behavior": [
+            "Achievements 组件可视化展示已解锁/进行中成就"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R6",
+      "need": "外部系统集成（PolarClaw 同步 + digist 信息流）",
+      "approach": "PolarClaw 通过 Sync API（SSE + Snapshot）获取用户状态；Feed 页面代理 digist API + KnowLever RAG 网关展示个性化信息流",
+      "features": [
+        {
+          "name": "PolarClaw 同步",
+          "status": "done",
+          "tech": [
+            "FastAPI",
+            "SSE"
+          ],
+          "interfaces": [
+            "GET /api/sync/snapshot",
+            "GET /api/sync/events"
+          ],
+          "behavior": [
+            "快照 API 一次性获取用户完整状态",
+            "SSE 流实时推送状态/日程变化",
+            "X-Sync-Key 服务级认证"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "信息流 Feed",
+          "status": "done",
+          "tech": [
+            "React",
+            "Zustand",
+            "vite proxy"
+          ],
+          "behavior": [
+            "经代理消费 digist `/api/recommend`（支持扩展字段与 `/api/recommend?weights=`）",
+            "推荐 tab 以 KnowLever 动态报告为主：优先契约 `GET /api/digist/report`，否则 wiki 页与 `GET /api/digest-feed` 降级",
+            "「刷新收集」与「重新编译报告」分离；重新编译走 `POST /api/digist/report/rebuild` 或 `POST /api/compile/trigger`",
+            "视频 tab 自动串联 `POST /api/video/digest`（push_knowlever 默认关，入库与消化解耦）",
+            "站内播放：`local_play_url` 存在时用 HTML5 video 弹层",
+            "信息源 tab：`GET/POST/DELETE /api/sources` + 一次性 `POST /api/crawl/trigger`；未部署的 `POST /api/feedback` 在 UI 标明 mock"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R7",
+      "need": "PWA 离线支持与数据备份",
+      "approach": "Service Worker + Workbox 离线缓存，离线请求队列 + 网络恢复自动同步，JSON 备份/恢复 + 差异对比",
+      "features": [
+        {
+          "name": "PWA 离线",
+          "status": "done",
+          "tech": [
+            "vite-plugin-pwa",
+            "Workbox",
+            "Service Worker"
+          ],
+          "behavior": [
+            "离线缓存",
+            "/clock/* 部署路径下正确提供构建产物、manifest、puzzles 与 Service Worker 资源",
+            "InstallPrompt 安装提示组件",
+            "离线请求队列",
+            "网络恢复自动同步",
+            "ServiceWorkerUpdatePrompt 更新提示"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "数据备份",
+          "status": "done",
+          "tech": [
+            "FastAPI"
+          ],
+          "interfaces": [
+            "POST /api/backup/create",
+            "POST /api/backup/restore"
+          ],
+          "behavior": [
+            "创建/恢复备份",
+            "差异对比预览",
+            "恢复前自动安全备份",
+            "后端支持 DATA_DIR 环境变量覆盖，测试运行不会污染真实 backend/data"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R8",
+      "need": "国际化、主题与交互增强",
+      "approach": "react-i18next 中英切换 + CSS 变量亮色/暗色主题 + Cmd+K 命令面板 + 休息时棋类小游戏",
+      "features": [
+        {
+          "name": "国际化",
+          "status": "done",
+          "tech": [
+            "react-i18next"
+          ],
+          "behavior": [
+            "中文/英文切换",
+            "语言偏好持久化"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "主题切换",
+          "status": "done",
+          "tech": [
+            "CSS Variables",
+            "Zustand"
+          ],
+          "behavior": [
+            "亮色/暗色模式",
+            "themeStore 全局状态管理"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "命令面板",
+          "status": "done",
+          "tech": [
+            "React"
+          ],
+          "behavior": [
+            "Cmd+K 快捷键唤起",
+            "页面导航、操作执行、任务搜索",
+            "模糊搜索 + 键盘快捷导航"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "国际象棋 Puzzle",
+          "status": "done",
+          "tech": [
+            "chess.js",
+            "chessground"
+          ],
+          "behavior": [
+            "休息时段可玩棋类 Puzzle",
+            "分级难度（一步杀/两步杀/捉双/牵制等）",
+            "多级提示系统"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R10",
+      "need": "信息消费工作台（Clock Feed）",
+      "approach": "推荐区报告优先 + 证据列表操作 + 视频自动消化与站内播放 + digist 信息源 CRUD + 结构化不感兴趣（反馈 API 契约占位）",
+      "features": [
+        {
+          "name": "推荐 / 报告 / 证据",
+          "status": "done",
+          "tech": [
+            "React",
+            "i18next",
+            "KnowLever RAG API"
+          ],
+          "behavior": [
+            "动态报告卡片与证据区：入库（摘要+元数据）、归档、不感兴趣（原因枚举）",
+            "移除「标题直灌」「消化入库」捆绑旧主路径"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "视频队列与播放",
+          "status": "done",
+          "tech": [
+            "digist video digest API"
+          ],
+          "behavior": [
+            "进入视频 tab 后为缺摘要条目后台自动串联消化",
+            "支持 local_play_url 内嵌播放与 watch_url 外链"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        },
+        {
+          "name": "信息源配置",
+          "status": "done",
+          "tech": [
+            "digist sources API"
+          ],
+          "behavior": [
+            "digist `/api/sources` 列表与创建（metadata JSON）；保留推荐权重滑块作 `/api/recommend?weights=` 预览"
+          ],
+          "test_status": "not_tested",
+          "evidence": [
+            "2026-06-10: feature verified in codebase (L2 gate audit backfill)"
+          ]
+        }
+      ]
+    }
+  ],
+  "lobster": {
+    "sdk_adapter": "adapters/polarclaw/sdk.py",
+    "events_emitted": [
+      "bug",
+      "scheduled_health_scan"
+    ],
+    "contracts": "contracts/lobster-event.schema.json",
+    "targets_dir": "lobster/targets",
+    "endpoints": {
+      "status": "GET /api/lobster/status",
+      "health": "GET /api/lobster/health",
+      "test": "POST /api/lobster/test"
+    }
+  },
+  "tech_stack": {
+    "frontend": [
+      "React 18",
+      "Vite 5",
+      "TailwindCSS",
+      "Zustand",
+      "react-i18next",
+      "html2canvas",
+      "Web Audio API",
+      "chess.js",
+      "chessground",
+      "react-router-dom 6"
+    ],
+    "backend": [
+      "FastAPI",
+      "Pydantic",
+      "WebSocket",
+      "Python 3.9+",
+      "uvicorn"
+    ],
+    "testing": [
+      "Vitest",
+      "Testing Library",
+      "pytest"
+    ],
+    "data": [
+      "JSON 文件存储",
+      "localStorage"
+    ],
+    "infra": [
+      "Docker",
+      "Tailscale Funnel",
+      "PWA",
+      "polarisor-port-sdk (call() API)"
+    ]
+  },
+  "service_management": {
+    "install_command": "cd backend && pip install -r requirements.txt",
+    "start_command": "cd backend && uvicorn main:app --host 0.0.0.0 --port 15550",
+    "restart_command": "cd backend && uvicorn main:app --host 0.0.0.0 --port 15550",
+    "health_endpoint": "http://127.0.0.1:15550/api/health"
+  },
+  "contacts": {
+    "owner": "mac",
+    "last_updated": "2026-05-13T13:35+08:00",
+    "updated_by": "sswatcher-smoke-test-3"
+  }
+}

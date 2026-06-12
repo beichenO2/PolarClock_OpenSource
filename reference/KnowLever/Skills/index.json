@@ -1,0 +1,14 @@
+{
+  "project": "Clock",
+  "generated_at": "2026-05-02T15:33:20.712Z",
+  "files": [
+    "checklists/checklist-concept-reference-categorization.md",
+    "checklists/checklist-concept-reference-management.md",
+    "checklists/checklist-entity-git-lfs.md",
+    "checklists/checklist-entity-reference-dir.md",
+    "skills/skill-concept-reference-categorization.md",
+    "skills/skill-concept-reference-management.md",
+    "skills/skill-entity-git-lfs.md",
+    "skills/skill-entity-reference-dir.md"
+  ]
+}

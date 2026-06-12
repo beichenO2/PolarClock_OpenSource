@@ -1,0 +1,144 @@
+{
+  "project": "Clock",
+  "version": "0.5.0",
+  "capabilities": [
+    {
+      "id": "clock.timer.state",
+      "service_name": "polarclock",
+      "description": "获取当前计时器状态",
+      "transport": "http",
+      "endpoint": "/api/timer",
+      "method": "GET",
+      "idempotent": true,
+      "side_effects": false,
+      "timeout_ms": 3000
+    },
+    {
+      "id": "clock.timer.start",
+      "service_name": "polarclock",
+      "description": "开始番茄钟计时",
+      "transport": "http",
+      "endpoint": "/api/timer/start",
+      "method": "POST",
+      "idempotent": false,
+      "side_effects": true,
+      "timeout_ms": 5000
+    },
+    {
+      "id": "clock.tasks.list",
+      "service_name": "polarclock",
+      "description": "列出所有任务",
+      "transport": "http",
+      "endpoint": "/api/tasks",
+      "method": "GET",
+      "idempotent": true,
+      "side_effects": false,
+      "timeout_ms": 5000
+    },
+    {
+      "id": "clock.tasks.create",
+      "service_name": "polarclock",
+      "description": "创建新任务",
+      "transport": "http",
+      "endpoint": "/api/tasks",
+      "method": "POST",
+      "idempotent": false,
+      "side_effects": true,
+      "timeout_ms": 5000
+    },
+    {
+      "id": "clock.stats.today",
+      "service_name": "polarclock",
+      "description": "获取今日统计数据",
+      "transport": "http",
+      "endpoint": "/api/stats/today",
+      "method": "GET",
+      "idempotent": true,
+      "side_effects": false,
+      "timeout_ms": 5000
+    },
+    {
+      "id": "clock.schedule.today",
+      "service_name": "polarclock",
+      "description": "获取今日日程",
+      "transport": "http",
+      "endpoint": "/api/schedule/today",
+      "method": "GET",
+      "idempotent": true,
+      "side_effects": false,
+      "timeout_ms": 5000
+    },
+    {
+      "id": "clock.sync.events",
+      "service_name": "polarclock",
+      "description": "SSE 实时事件流",
+      "transport": "http",
+      "endpoint": "/api/sync/events",
+      "method": "GET",
+      "idempotent": true,
+      "side_effects": false,
+      "timeout_ms": 0
+    },
+    {
+      "id": "clock.sounds.list",
+      "service_name": "polarclock",
+      "description": "获取可用通知声音列表（内置 + 自定义）",
+      "transport": "http",
+      "endpoint": "/api/timer/sounds",
+      "method": "GET",
+      "idempotent": true,
+      "side_effects": false,
+      "timeout_ms": 3000,
+      "auth": "X-Token"
+    },
+    {
+      "id": "clock.sounds.upload",
+      "service_name": "polarclock",
+      "description": "上传自定义通知声音（mp3/wav/ogg，≤1MB）",
+      "transport": "http",
+      "endpoint": "/api/timer/sounds/upload",
+      "method": "POST",
+      "idempotent": false,
+      "side_effects": true,
+      "timeout_ms": 10000,
+      "auth": "X-Token",
+      "content_type": "multipart/form-data"
+    },
+    {
+      "id": "clock.sounds.delete",
+      "service_name": "polarclock",
+      "description": "删除自定义通知声音",
+      "transport": "http",
+      "endpoint": "/api/timer/sounds/custom/{filename}",
+      "method": "DELETE",
+      "idempotent": true,
+      "side_effects": true,
+      "timeout_ms": 3000,
+      "auth": "X-Token"
+    },
+    {
+      "id": "clock.sounds.preferences.get",
+      "service_name": "polarclock",
+      "description": "获取声音偏好设置（各场景铃声、音量）",
+      "transport": "http",
+      "endpoint": "/api/timer/sound-preferences",
+      "method": "GET",
+      "idempotent": true,
+      "side_effects": false,
+      "timeout_ms": 3000,
+      "auth": "X-Token"
+    },
+    {
+      "id": "clock.sounds.preferences.update",
+      "service_name": "polarclock",
+      "description": "更新声音偏好设置",
+      "transport": "http",
+      "endpoint": "/api/timer/sound-preferences",
+      "method": "PUT",
+      "idempotent": true,
+      "side_effects": true,
+      "timeout_ms": 3000,
+      "auth": "X-Token"
+    }
+  ]
+}

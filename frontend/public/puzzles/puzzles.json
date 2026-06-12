@@ -1,0 +1,206 @@
+{
+  "puzzles": [
+    {
+      "id": "p001",
+      "rating": 1650,
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4",
+      "moves": [
+        "h5f7"
+      ],
+      "themes": [
+        "mateIn1",
+        "sacrifice"
+      ]
+    },
+    {
+      "id": "p002",
+      "rating": 1700,
+      "fen": "r2qk2r/ppp2ppp/2n1bn2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQK2R w KQkq - 0 6",
+      "moves": [
+        "c4f7",
+        "e8f7",
+        "f3g5",
+        "f7g8"
+      ],
+      "themes": [
+        "sacrifice",
+        "fork"
+      ]
+    },
+    {
+      "id": "p003",
+      "rating": 1800,
+      "fen": "r1b1k2r/ppppqppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 0 5",
+      "moves": [
+        "c1g5"
+      ],
+      "themes": [
+        "pin"
+      ]
+    },
+    {
+      "id": "p004",
+      "rating": 1850,
+      "fen": "rnbqkbnr/ppp2ppp/4p3/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 3",
+      "moves": [
+        "c8b7"
+      ],
+      "themes": [
+        "development"
+      ]
+    },
+    {
+      "id": "p005",
+      "rating": 1900,
+      "fen": "r1bqk2r/pppp1ppp/2n2n2/2b1p3/4P3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq - 4 4",
+      "moves": [
+        "f3e5",
+        "c6e5"
+      ],
+      "themes": [
+        "fork"
+      ]
+    },
+    {
+      "id": "p006",
+      "rating": 2000,
+      "fen": "2rr2k1/pp3ppp/2n1bn2/2q1p3/8/P1N2NP1/1PP1PPBP/R2QR1K1 b - - 0 13",
+      "moves": [
+        "c5c2"
+      ],
+      "themes": [
+        "hangingPiece",
+        "tactics"
+      ]
+    },
+    {
+      "id": "p007",
+      "rating": 2100,
+      "fen": "r1bq1rk1/ppp2ppp/2n1pn2/3p4/1bPP4/2NBPN2/PP3PPP/R1BQK2R w KQ - 0 7",
+      "moves": [
+        "d3h7"
+      ],
+      "themes": [
+        "sacrifice",
+        "attack"
+      ]
+    },
+    {
+      "id": "p008",
+      "rating": 2200,
+      "fen": "r4rk1/1bq1bppp/pp2pn2/2p5/P1BP4/2N1PN2/1PQ2PPP/R4RK1 w - - 0 14",
+      "moves": [
+        "d4d5"
+      ],
+      "themes": [
+        "pawnBreak",
+        "center"
+      ]
+    },
+    {
+      "id": "p009",
+      "rating": 1650,
+      "fen": "rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3",
+      "moves": [
+        "g1h3"
+      ],
+      "themes": [
+        "defense"
+      ]
+    },
+    {
+      "id": "p010",
+      "rating": 1750,
+      "fen": "r3kb1r/ppp1pppp/2n2n2/3q4/3P4/5N2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+      "moves": [
+        "b1c3",
+        "d5a5",
+        "d1d2"
+      ],
+      "themes": [
+        "development",
+        "tempo"
+      ]
+    },
+    {
+      "id": "p011",
+      "rating": 1950,
+      "fen": "r2qr1k1/ppp2ppp/2nbbn2/3pp3/8/1BNP1NP1/PPP1PPBP/R2QR1K1 w - - 0 10",
+      "moves": [
+        "c3d5"
+      ],
+      "themes": [
+        "centralControl"
+      ]
+    },
+    {
+      "id": "p012",
+      "rating": 2050,
+      "fen": "r1bq1rk1/pp2ppbp/2np1np1/8/3NP3/2N1BP2/PPPQ2PP/R3KB1R w KQ - 0 9",
+      "moves": [
+        "e3c5"
+      ],
+      "themes": [
+        "skewer"
+      ]
+    },
+    {
+      "id": "p013",
+      "rating": 2150,
+      "fen": "3r2k1/pp3ppp/2p2n2/2b5/4P3/2N5/PPP2PPP/R1B2RK1 b - - 0 14",
+      "moves": [
+        "c5f2",
+        "f1f2",
+        "d8d1"
+      ],
+      "themes": [
+        "deflection",
+        "backRankMate"
+      ]
+    },
+    {
+      "id": "p014",
+      "rating": 2250,
+      "fen": "2r3k1/p4ppp/1p2pn2/5b2/2PR4/1PN2P2/P5PP/4R1K1 w - - 0 22",
+      "moves": [
+        "d4d8",
+        "c8d8",
+        "e1e6"
+      ],
+      "themes": [
+        "decoy",
+        "endgame"
+      ]
+    },
+    {
+      "id": "p015",
+      "rating": 2400,
+      "fen": "r4rk1/pp2qppp/2n1pn2/2bp4/3P4/2NBPN2/PP3PPP/R2QK2R w KQ - 0 9",
+      "moves": [
+        "d3h7",
+        "g8h7",
+        "f3g5",
+        "h7g8",
+        "d1h5"
+      ],
+      "themes": [
+        "sacrifice",
+        "mateIn3",
+        "classicBishopSac"
+      ]
+    },
+    {
+      "id": "p016",
+      "rating": 1680,
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+      "moves": [
+        "f1b5"
+      ],
+      "themes": [
+        "opening",
+        "pin"
+      ]
+    }
+  ],
+  "total": 16
+}

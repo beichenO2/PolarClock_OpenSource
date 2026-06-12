@@ -1,0 +1,22 @@
+{
+  "puzzles": [
+    {
+      "id": "p015",
+      "rating": 2400,
+      "fen": "r4rk1/pp2qppp/2n1pn2/2bp4/3P4/2NBPN2/PP3PPP/R2QK2R w KQ - 0 9",
+      "moves": [
+        "d3h7",
+        "g8h7",
+        "f3g5",
+        "h7g8",
+        "d1h5"
+      ],
+      "themes": [
+        "sacrifice",
+        "mateIn3",
+        "classicBishopSac"
+      ]
+    }
+  ],
+  "total": 1
+}

@@ -1,0 +1,80 @@
+{
+  "puzzles": [
+    {
+      "id": "p006",
+      "rating": 2000,
+      "fen": "2rr2k1/pp3ppp/2n1bn2/2q1p3/8/P1N2NP1/1PP1PPBP/R2QR1K1 b - - 0 13",
+      "moves": [
+        "c5c2"
+      ],
+      "themes": [
+        "hangingPiece",
+        "tactics"
+      ]
+    },
+    {
+      "id": "p007",
+      "rating": 2100,
+      "fen": "r1bq1rk1/ppp2ppp/2n1pn2/3p4/1bPP4/2NBPN2/PP3PPP/R1BQK2R w KQ - 0 7",
+      "moves": [
+        "d3h7"
+      ],
+      "themes": [
+        "sacrifice",
+        "attack"
+      ]
+    },
+    {
+      "id": "p008",
+      "rating": 2200,
+      "fen": "r4rk1/1bq1bppp/pp2pn2/2p5/P1BP4/2N1PN2/1PQ2PPP/R4RK1 w - - 0 14",
+      "moves": [
+        "d4d5"
+      ],
+      "themes": [
+        "pawnBreak",
+        "center"
+      ]
+    },
+    {
+      "id": "p012",
+      "rating": 2050,
+      "fen": "r1bq1rk1/pp2ppbp/2np1np1/8/3NP3/2N1BP2/PPPQ2PP/R3KB1R w KQ - 0 9",
+      "moves": [
+        "e3c5"
+      ],
+      "themes": [
+        "skewer"
+      ]
+    },
+    {
+      "id": "p013",
+      "rating": 2150,
+      "fen": "3r2k1/pp3ppp/2p2n2/2b5/4P3/2N5/PPP2PPP/R1B2RK1 b - - 0 14",
+      "moves": [
+        "c5f2",
+        "f1f2",
+        "d8d1"
+      ],
+      "themes": [
+        "deflection",
+        "backRankMate"
+      ]
+    },
+    {
+      "id": "p014",
+      "rating": 2250,
+      "fen": "2r3k1/p4ppp/1p2pn2/5b2/2PR4/1PN2P2/P5PP/4R1K1 w - - 0 22",
+      "moves": [
+        "d4d8",
+        "c8d8",
+        "e1e6"
+      ],
+      "themes": [
+        "decoy",
+        "endgame"
+      ]
+    }
+  ],
+  "total": 6
+}

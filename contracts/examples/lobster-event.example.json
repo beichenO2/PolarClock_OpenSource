@@ -1,0 +1,42 @@
+[
+  {
+    "ts": "2026-05-01T12:00:00.000Z",
+    "type": "bug",
+    "source_project": "clock",
+    "severity": "error",
+    "payload": {
+      "message": "Timer API returned 500 during session save",
+      "component": "timer",
+      "operation": "save_session",
+      "error": "IOError: disk full"
+    },
+    "dedup_key": "clock:bug:timer:save_session"
+  },
+  {
+    "ts": "2026-05-01T12:05:00.000Z",
+    "type": "bug",
+    "source_project": "clock",
+    "severity": "warn",
+    "payload": {
+      "message": "SSE connection dropped for user admin",
+      "component": "sync",
+      "operation": "sse_stream",
+      "error": "ConnectionResetError"
+    },
+    "dedup_key": "clock:bug:sync:sse_stream"
+  },
+  {
+    "ts": "2026-05-01T08:00:00.000Z",
+    "type": "scheduled_health_scan",
+    "source_project": "clock",
+    "severity": "info",
+    "payload": {
+      "healthy": true,
+      "checks": [
+        {"name": "data_dir_writable", "ok": true},
+        {"name": "api_responsive", "ok": true}
+      ]
+    },
+    "dedup_key": "clock:scheduled_health_scan:target:2026-05-01"
+  }
+]

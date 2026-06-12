@@ -1,0 +1,18 @@
+{
+  "project_name": "Clock",
+  "project_root": "~/Polarisor/Clock",
+  "user": "ecosystem",
+  "topic_name": "ecosystem-clock",
+  "reference_fingerprint": "34c6dda948c42b4ee4bade8a284c51975e7abc1b848b79b44493ab7eca518fc5",
+  "source_files": 1,
+  "compiled_at": "2026-05-02T15:33:20.713Z",
+  "elapsed_ms": 165682,
+  "outputs": {
+    "wiki_dir": "~/Polarisor/Clock/reference/KnowLever/llm-wiki",
+    "knowledge_dir": "~/Polarisor/Clock/reference/KnowLever/Knowledge",
+    "skills_dir": "~/Polarisor/Clock/reference/KnowLever/Skills",
+    "knowledge_json": "~/Polarisor/Clock/reference/KnowLever/Knowledge/tree.json",
+    "knowledge_md": "~/Polarisor/Clock/reference/KnowLever/Knowledge/tree.md",
+    "skills_files": 8
+  }
+}

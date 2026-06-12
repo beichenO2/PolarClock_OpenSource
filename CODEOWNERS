@@ -1,0 +1,15 @@
+# CODEOWNERS — Clock
+#
+# Project: PolarClock (tier: app, status: active)
+# Owner:   @beichenO2
+#
+# Boundary:
+#   - Sandbox-IN  (runtime): frontend/src/, backend/
+#   - Sandbox-OUT (declarations): SSOt/, polaris.json, CODEOWNERS
+
+*                              @beichenO2
+
+/frontend/src/                 @beichenO2
+/backend/                      @beichenO2
+/polaris.json                  @beichenO2
+/SSoT/                         @beichenO2

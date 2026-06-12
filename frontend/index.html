@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon-192.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#1a1a2e" />
+    <meta name="description" content="PolarClock - 个人番茄钟时间管理系统" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="PolarClock" />
+    <link rel="apple-touch-icon" href="/icon-192.svg" />
+    <link rel="apple-touch-startup-image" href="/icon-512.svg" />
+    <title>PolarClock</title>
+  </head>
+  <body class="bg-dark-bg text-dark-text">
+    <div id="root"></div>
+    <script type="module" src="/checkup-widget/checkup-widget.es.js"></script>
+    <polar-checkup data-project="Clock" data-position="bottom-right"></polar-checkup>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
